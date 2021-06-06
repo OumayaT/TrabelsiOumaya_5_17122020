@@ -34,19 +34,19 @@
                     </div>
                 </nav>
             </div>
-        </div>
-    </header>
-    <main class="container">
+        </header>
+        <main class="container">
         <div class=" bg-warning py-5 my-2">
-            <div class="container px-4 px-lg-5 my-5">
+            <div class="container ">
               <div class="text-center text-dark-50">
-                <h1 class=" display-2 font-weight-bold">Ori-bears</h1>
-                <p class="lead display-4 text-dark-50 mb-0">Trouvez la peluche idéale faite à la main !</p>
+                <h1 class="display-2 font-weight-bold">Ori-bears</h1>
+                <p class="lead display-4 text-dark-50 mb-0">Vous avez trouvé la peluche idéale !</p>
               </div>
             </div>
           </div>
-        <div class="row justify-content-center" id="teddies_list">
-            <!--JS POUR LISTER LES OURs-->
+        </div>
+        <div class="row justify-content-center" id="teddyCard">
+            <!--JS POUR CREER LA FICHE PRODUIT-->            
         </div>
     </main>
     <!-- FOOTER -->
@@ -58,6 +58,14 @@
   
         </div>
     </footer>
+    <!-- MODAL ADOPTION -->
+    <div class="modal fade" id="teddyAlertMessage" tabindex="-1" aria-labelledby="teddyAlertMessageModal" aria-hidden="true">
+        <!-- JS POUR AFFICHER L'ADOPTION -->
+    </div>
+    <!-- MODAL IMAGES -->
+    <div class="modal fade" id="teddyZoomModal" tabindex="-1" aria-labelledby="teddyZoom" aria-hidden="true">
+        <!-- JS POUR ZOOMER LA PHOTO -->
+    </div>
     <!-- MODAL ERREUR BDD -->
     <div class="modal fade" id="erreurServeur" tabindex="-1" aria-labelledby="MessageErreur" aria-hidden="true">
         <!--JS pour gestion erreur -->
@@ -74,7 +82,7 @@
         crossorigin="anonymous"></script>
     <!-- Script Oursons -->
     <script src="js/main.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/produit.js"></script>
 </body>
 
 </html>
