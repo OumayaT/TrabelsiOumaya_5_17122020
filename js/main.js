@@ -1,6 +1,6 @@
 //Construction lien panier avec compteur et tooltip
 function CompteurPanierNavBar(){
-    const teddyBasket = JSON.parse(localStorage.getItem('adoptionTeddies'))
+    const teddyBasket = JSON.parse(localStorage.getItem('AchatTeddies'))
     const teddyBasketCount = document.getElementById("teddyBasketCount")
     const teddyBasketLink = document.createElement("a")
     teddyBasketLink.classList.add("nav-link", "text-white", "h5")

@@ -1,6 +1,6 @@
 // Appel de la fonction Compteur du panier de la navbar
 CompteurPanierNavBar()
-// Récupération de l'ID de l'ourson de la page
+// Récupération de l'ID de l'ours selectionné
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
@@ -71,14 +71,14 @@ function colorTeddyOptions(teddySelected){
         teddyColor.appendChild(colorOption)
     })
 }
-// Ajout du teddy choisi dans le panier
+// Ajout du teddy dans le panier
 function addTeddyToBasketAndRedirect(teddySelected){
     const addTeddyToLocalStorage = document.getElementById("submit")
     addTeddyToLocalStorage.addEventListener("click", function (event) {
         event.preventDefault()
         $('#teddyAlertMessage').modal('show')
         // Créer l'ajout dans localstorage
-        teddyAdopter = {teddyName: teddySelected.name, 
+        teddyAchat = {teddyName: teddySelected.name, 
                         teddyColor: teddyColor.value, 
                         teddyId: teddySelected._id, 
                         teddyQuantity: 1, 
@@ -90,7 +90,7 @@ function addTeddyToBasketAndRedirect(teddySelected){
         addToBasketGoToBasket()
     })
 }
-// Afichage du modal pour confirmer l'adoption du teddy choisi
+// Afichage du modal pour confirmer l'achat du teddy choisi
 function modalAddTeddyToBasket(teddySelected){
     const teddyAlertMessage = document.getElementById("teddyAlertMessage")
     const teddyAlertMessageP = document.createElement("div")
@@ -109,8 +109,8 @@ function modalAddTeddyToBasket(teddySelected){
             </div>
             <div class="modal-footer">
                 <div class="row w-100 justify-content-spacebetween">
-                    <div class="col-6"><a href="index.html" class="btn btn-success btn-block" id="continuerAdoption">Continuer mes achats</a></div>
-                    <div class="col-6"><a href="panier.html" class="btn btn-success btn-block" id="finaliserAdoption">Consulter mon panier</a></div>
+                    <div class="col-6"><a href="index.html" class="btn btn-success btn-block" id="continuerAchat">Continuer mes achats</a></div>
+                    <div class="col-6"><a href="panier.html" class="btn btn-success btn-block" id="finaliserAchat">Consulter mon panier</a></div>
                 </div>
             </div>
         </div>`
@@ -118,21 +118,21 @@ function modalAddTeddyToBasket(teddySelected){
 }
 // Ajouter au panier et aller à l'index
 function addToBasketGoToIndex(){
-    addTeddyGoIndex = document.getElementById("continuerAdoption")
+    addTeddyGoIndex = document.getElementById("continuerAchat")
     addTeddyGoIndex.addEventListener("click", function (event) {
         firstAdd()
     })
 }
 // Ajouter au panier et aller au panier
 function addToBasketGoToBasket(){
-    const addTeddyGoBasket = document.getElementById("finaliserAdoption")
+    const addTeddyGoBasket = document.getElementById("finaliserAchat")
     addTeddyGoBasket.addEventListener("click", function (event) {
         firstAdd()
     })
 }
 // Ajouter au panier...
 function firstAdd(){
-    teddyAuPanier = JSON.parse(localStorage.getItem('adoptionTeddies'))
+    teddyAuPanier = JSON.parse(localStorage.getItem('AchatTeddies'))
     if (teddyAuPanier) {
         thenRedirect()
     } else {
@@ -140,8 +140,8 @@ function firstAdd(){
         thenRedirect()
     }    
 }
-// ...puis rediriger
+// Redirection
 function thenRedirect(){
-    teddyAuPanier.push(teddyAdopter)
-    localStorage.setItem('adoptionTeddies', JSON.stringify(teddyAuPanier))
+    teddyAuPanier.push(teddyAchat)
+    localStorage.setItem('AchatTeddies', JSON.stringify(teddyAuPanier))
 }
