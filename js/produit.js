@@ -107,7 +107,7 @@ function modalAddTeddyToBasket(teddySelected){
             </div>
             <div class="modal-footer">
                 <div class="row w-100 justify-content-spacebetween">
-                    <div class="col-6"><a href="index.html" class="btn btn-success btn-block" id="continuerAchat">Continuer mes achats</a></div>
+                    <div class="col-6"><a href="index.html" class="btn btn-warning btn-block" id="continuerAchat">Continuer mes achats</a></div>
                     <div class="col-6"><a href="panier.html" class="btn btn-success btn-block" id="finaliserAchat">Consulter mon panier</a></div>
                 </div>
             </div>
