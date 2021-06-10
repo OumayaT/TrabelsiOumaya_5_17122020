@@ -1,5 +1,3 @@
-// Appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()
 // Récupération de l'ID de l'ours selectionné
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -140,8 +138,22 @@ function firstAdd(){
         thenRedirect()
     }    
 }
-// Redirection
 function thenRedirect(){
-    teddyAuPanier.push(teddyAchat)
+    j = -1
+    for( i=0;teddyAuPanier[i] != undefined ;i++){
+        if (teddyAuPanier[i].teddyId == teddyAchat.teddyId) {
+        teddyAuPanier[i].teddyPrice += teddyAchat.teddyPrice
+        teddyAuPanier[i].teddyQuantity += 1
+        j = 1
+    }
+    }
+
+    if ( j == -1) 
+    {
+        teddyAuPanier.push(teddyAchat)
+    }
+  //  teddyAuPanier[7].teddyPrice = 120
     localStorage.setItem('AchatTeddies', JSON.stringify(teddyAuPanier))
 }
+// Appel de la fonction Compteur du panier de la navbar
+CompteurPanierNavBar()

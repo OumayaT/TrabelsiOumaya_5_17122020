@@ -1,5 +1,3 @@
-//appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()
 //Connection à la base de données
 fetch("https://ab-p5-api.herokuapp.com/api/teddies")
     //Formatage reponse au format JSON
@@ -31,3 +29,7 @@ function tableauTeddies(teddiesList){
         mainTeddy.appendChild(divTeddy)
     })
 }
+
+
+//appel de la fonction Compteur du panier de la navbar
+CompteurPanierNavBar()
