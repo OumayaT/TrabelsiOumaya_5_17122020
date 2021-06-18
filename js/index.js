@@ -1,12 +1,9 @@
 //Connection à la base de données
 fetch("https://ab-p5-api.herokuapp.com/api/teddies")
-    //Formatage reponse au format JSON
     .then(teddiesList => teddiesList.json())
-    // Recuperation du JSON tableau des oursons //
     .then(teddiesList => {
         tableauTeddies(teddiesList)
     })
-    //Gestion d'erreur
     .catch (function(error){
         gestionErreurMessage(error)
     })
@@ -31,5 +28,4 @@ function tableauTeddies(teddiesList){
 }
 
 
-//appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()
+

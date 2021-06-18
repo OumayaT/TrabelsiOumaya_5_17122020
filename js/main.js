@@ -1,18 +1,3 @@
-//Construction lien panier avec compteur et tooltip
-function CompteurPanierNavBar(){
-    const teddyBasket = JSON.parse(localStorage.getItem('AchatTeddies'))
-    const teddyBasketCount = document.getElementById("teddyBasketCount")
-    const teddyBasketLink = document.createElement("a")
-    teddyBasketLink.classList.add("nav-link", "text-white", "h5")
-    teddyBasketLink.setAttribute("href", "panier.html")
-    if (teddyBasket){
-        teddyBasketLink.innerHTML = `Panier <span class="badge badge-pill badge-white text-white ">${teddyBasket.length}</span>`
-    } else{
-        teddyBasketLink.innerHTML = `Panier <span class="badge badge-pill badge-dark text-white border border-white mx-2 h5">0</span>`
-    }
-    teddyBasketCount.appendChild(teddyBasketLink)
-}
-
 //Gestion erreur et affichage du message
 function gestionErreurMessage(error){
     const erreurMessage = document.getElementById("erreurServeur")

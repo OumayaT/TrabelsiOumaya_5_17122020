@@ -3,29 +3,29 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 // Si aucun ID dans l'URL alors on redirige vers l'accueil
-if (id === null) {window.location.href ="index.html"}
+if (id === null) { window.location.href = "index.html" }
 // Connection à la base de données et ajout au panier
 fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id)
     .then(handleErrors)
     .then(teddySelected => teddySelected.json())
     .then(teddySelected => {
-    
+
         ficheProduitTeddy(teddySelected)
         zoomTeddyPhoto(teddySelected)
         colorTeddyOptions(teddySelected)
         addTeddyToBasketAndRedirect(teddySelected)
     })
-    .catch (function(error){
+    .catch(function (error) {
         gestionErreurMessage(error)
     })
 ////////////////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////
 
 
 // Construction DIV fiche produit teddy
-function ficheProduitTeddy(teddySelected){
+function ficheProduitTeddy(teddySelected) {
     const teddyCard = document.getElementById("teddyCard")
     const divCard = document.createElement("div")
-    divCard.classList.add("col-10", "col-sm-8","col-md-8", "col-lg-6", "p-2", "mb-5","shadow", "bg-warning")
+    divCard.classList.add("col-10", "col-sm-8", "col-md-8", "col-lg-6", "p-2", "mb-5", "shadow", "bg-warning")
     divCard.innerHTML = `
         <div class="card mb-4 mb-lg-0 border-warning shadow-">
             <img src="${teddySelected.imageUrl}" alt="${teddySelected.name}" class="card-img-top h-50" data-toggle="modal" data-target="#teddyZoomModal">
@@ -46,7 +46,7 @@ function ficheProduitTeddy(teddySelected){
     teddyCard.appendChild(divCard)
 }
 // Construction Zoom Modal
-function zoomTeddyPhoto(teddySelected){
+function zoomTeddyPhoto(teddySelected) {
     const teddyZoom = document.getElementById("teddyZoomModal")
     const divZoom = document.createElement("div")
     divZoom.classList.add("modal-dialog", "modal-xl")
@@ -59,7 +59,7 @@ function zoomTeddyPhoto(teddySelected){
     teddyZoom.appendChild(divZoom)
 }
 // Construction du choix des couleurs
-function colorTeddyOptions(teddySelected){
+function colorTeddyOptions(teddySelected) {
     const teddyColors = teddySelected.colors
     const teddyColor = document.getElementById("teddyColor")
     teddyColors.forEach(color => {
@@ -70,18 +70,19 @@ function colorTeddyOptions(teddySelected){
     })
 }
 // Ajout du teddy dans le panier
-function addTeddyToBasketAndRedirect(teddySelected){
+function addTeddyToBasketAndRedirect(teddySelected) {
     const addTeddyToLocalStorage = document.getElementById("submit")
     addTeddyToLocalStorage.addEventListener("click", function (event) {
         event.preventDefault()
         $('#teddyAlertMessage').modal('show')
         // Créer l'ajout dans localstorage
-        teddyAchat = {teddyName: teddySelected.name, 
-                        teddyColor: teddyColor.value, 
-                        teddyId: teddySelected._id, 
-                        teddyQuantity: 1, 
-                        teddyPrice: teddySelected.price / 100,
-                        teddyImageUrl: teddySelected.imageUrl
+        teddyAchat = {
+            teddyName: teddySelected.name,
+            teddyColor: teddyColor.value,
+            teddyId: teddySelected._id,
+            teddyQuantity: 1,
+            teddyPrice: teddySelected.price / 100,
+            teddyImageUrl: teddySelected.imageUrl
         }
         modalAddTeddyToBasket(teddySelected)
         addToBasketGoToIndex()
@@ -89,7 +90,7 @@ function addTeddyToBasketAndRedirect(teddySelected){
     })
 }
 // Afichage du modal pour confirmer l'achat du teddy choisi
-function modalAddTeddyToBasket(teddySelected){
+function modalAddTeddyToBasket(teddySelected) {
     const teddyAlertMessage = document.getElementById("teddyAlertMessage")
     const teddyAlertMessageP = document.createElement("div")
     teddyAlertMessageP.classList.add("modal-dialog")
@@ -115,44 +116,45 @@ function modalAddTeddyToBasket(teddySelected){
     teddyAlertMessage.appendChild(teddyAlertMessageP)
 }
 // Ajouter au panier et aller à l'index
-function addToBasketGoToIndex(){
+function addToBasketGoToIndex() {
     addTeddyGoIndex = document.getElementById("continuerAchat")
     addTeddyGoIndex.addEventListener("click", function (event) {
         firstAdd()
     })
 }
 // Ajouter au panier et aller au panier
-function addToBasketGoToBasket(){
+function addToBasketGoToBasket() {
     const addTeddyGoBasket = document.getElementById("finaliserAchat")
     addTeddyGoBasket.addEventListener("click", function (event) {
         firstAdd()
     })
 }
 // Ajouter au panier...
-function firstAdd(){
+function firstAdd() {
     teddyAuPanier = JSON.parse(localStorage.getItem('AchatTeddies'))
     if (teddyAuPanier) {
         thenRedirect()
     } else {
         teddyAuPanier = []
         thenRedirect()
-    }    
-}
-function thenRedirect(){
-    j = -1
-    for( i=0;teddyAuPanier[i] != undefined ;i++){
-        if (teddyAuPanier[i].teddyId == teddyAchat.teddyId) {
-        teddyAuPanier[i].teddyPrice += teddyAchat.teddyPrice
-        teddyAuPanier[i].teddyQuantity += 1
-        j = 1
     }
+}
+function thenRedirect() {
+    j = -1
+    for (i = 0; teddyAuPanier[i] != undefined; i++) {
+        if (teddyAuPanier[i].teddyId == teddyAchat.teddyId) {
+            teddyAuPanier[i].teddyPrice += teddyAchat.teddyPrice
+            teddyAuPanier[i].teddyQuantity += 1
+
+            //Construction lien panier avec compteur et tooltip
+            j = 1
+        }
     }
 
-    if ( j == -1) 
-    {
+    if (j == -1) {
         teddyAuPanier.push(teddyAchat)
     }
-  //  teddyAuPanier[7].teddyPrice = 120
+    //  teddyAuPanier[7].teddyPrice = 120
     localStorage.setItem('AchatTeddies', JSON.stringify(teddyAuPanier))
 }
 // Appel de la fonction Compteur du panier de la navbar

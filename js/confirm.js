@@ -1,5 +1,3 @@
-//appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()
 // récupération de l'id de la commande
 const numeroCommande = localStorage.getItem('numeroCommande');
 // récupération du prix total de la commande

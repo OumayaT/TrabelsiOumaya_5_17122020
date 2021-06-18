@@ -1,5 +1,4 @@
-//appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()
+
 
 //Construction H2 au nom du teddy
 const teddyBasket = JSON.parse(localStorage.getItem('AchatTeddies'))
@@ -8,12 +7,12 @@ const h2Name = document.createElement("h2")
 h2Name.classList.add("h3", "text-center", "text-primary", "mt-4")
 if (teddyBasket){
     if (teddyBasket.length > 1) {
-        const h2Text = `Vous avez choisi ${teddyBasket.length} ours en peluche.`
+        const h2Text = `Vous avez choisi ${teddyBasket.length} modèles d'ours en peluche.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
         ConstrusctionDuPanier()
     } else if (teddyBasket.length == 1) {
-        const h2Text = `Vous avez choisi ${teddyBasket.length} ours en peluche.`
+        const h2Text = `Vous avez choisi ${teddyBasket.length} modèle d'ours en peluche.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
         ConstrusctionDuPanier()
