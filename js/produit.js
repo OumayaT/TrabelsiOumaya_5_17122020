@@ -115,7 +115,7 @@ function modalAddTeddyToBasket(teddySelected) {
         </div>`
     teddyAlertMessage.appendChild(teddyAlertMessageP)
 }
-// Ajouter au panier et aller à l'index
+// Ajouter au panier ou revenir à la page  d'accueil
 function addToBasketGoToIndex() {
     addTeddyGoIndex = document.getElementById("continuerAchat")
     addTeddyGoIndex.addEventListener("click", function (event) {
@@ -157,5 +157,3 @@ function thenRedirect() {
     //  teddyAuPanier[7].teddyPrice = 120
     localStorage.setItem('AchatTeddies', JSON.stringify(teddyAuPanier))
 }
-// Appel de la fonction Compteur du panier de la navbar
-CompteurPanierNavBar()

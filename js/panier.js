@@ -188,7 +188,7 @@ function ConstrusctionDuPanier(){
                 valideEmail(email.value)){    
             //on créer un total
             localStorage.setItem('montantCommande', teddyTotalBasket);
-            const montantCommande = localStorage.getItem('montantCommande');
+            
             //console.log(montantCommande);
             //on crée un contact
             const contact = {
