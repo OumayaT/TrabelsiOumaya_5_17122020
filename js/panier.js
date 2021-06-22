@@ -1,11 +1,9 @@
-
-
 //Construction H2 au nom du teddy
 const teddyBasket = JSON.parse(localStorage.getItem('AchatTeddies'))
 const teddyName = document.getElementById("teddyH2Count")
 const h2Name = document.createElement("h2")
 h2Name.classList.add("h3", "text-center", "text-primary", "mt-4")
-if (teddyBasket){
+if (teddyBasket) {
     if (teddyBasket.length > 1) {
         const h2Text = `Vous avez choisi ${teddyBasket.length} modèles d'ours en peluche.`
         h2Name.innerHTML = h2Text
@@ -36,13 +34,13 @@ if (teddyBasket){
 }
 
 //Construction du panier
-function ConstrusctionDuPanier(){
+function ConstrusctionDuPanier() {
     i = 0
     teddyTotalBasket = 0
     const teddyBasketItem = document.getElementById("teddiesBasketList")
     teddyBasket.forEach(teddyItem => {
         const divTeddyItem = document.createElement("div")
-        divTeddyItem.classList.add("row", "mb-1", "p-0","bg-dark", "justify-content-between", "align-items-center")
+        divTeddyItem.classList.add("row", "mb-1", "p-0", "bg-dark", "justify-content-between", "align-items-center")
         //console.log(teddyItem[i])
         const teddyBasketItemContent = `            
                 <div class="col-2 p-1 d-none  d-sm-block"><img src="${teddyItem.teddyImageUrl.slice(-18)}" alt="${teddyItem.teddyName}" class=" w-100 h-100 m-1"></div>
@@ -58,39 +56,41 @@ function ConstrusctionDuPanier(){
         divTeddyItem.innerHTML = teddyBasketItemContent
         teddyBasketItem.appendChild(divTeddyItem)
         i++
-        teddyTotalBasket= teddyTotalBasket + teddyItem.teddyPrice   
+        teddyTotalBasket = teddyTotalBasket + teddyItem.teddyPrice
     })
+    
     //Afficher le total du panier
     const teddyBasketTotal = document.getElementById("teddiesBasketTotal")
-        const divTeddyBasketTotal = document.createElement("div")
-        divTeddyBasketTotal.classList.add("row", "p-0", "m-1", "align-items-center")
-        const teddyBaskettotalContent = `
+    const divTeddyBasketTotal = document.createElement("div")
+    divTeddyBasketTotal.classList.add("row", "p-0", "m-1", "align-items-center")
+    const teddyBaskettotalContent = `
                 <div class="col-6 p-0 m-0">Votre total : </div>
                 <div class="col-6 p-0 m-0 text-right">${teddyTotalBasket}.00 €</div>`
-        divTeddyBasketTotal.innerHTML = teddyBaskettotalContent
-        teddyBasketTotal.appendChild(divTeddyBasketTotal)
+    divTeddyBasketTotal.innerHTML = teddyBaskettotalContent
+    teddyBasketTotal.appendChild(divTeddyBasketTotal)
+
     //Bouton pour vider le panier
-        const divTeddyBasketButtons = document.createElement("div")
-        divTeddyBasketButtons.classList.add("row", "p-0", "m-1", "mt-3", "w-100", "justify-content-center", "flex-column", "flex-md-row")
-        divTeddyBasketButtons.setAttribute("id", ConfirmDeleteBasket)
-        const teddyBasketButtonContent = `
-                
-                <div class="col-sm-12 col-md-6 p-1"><a href="#" class="btn btn-danger btn-block " id="SupprimerAchat">Annuler ma commande</a></div>`
-        divTeddyBasketButtons.innerHTML = teddyBasketButtonContent
-        teddyBasketTotal.appendChild(divTeddyBasketButtons)
+    const divTeddyBasketButtons = document.createElement("div")
+    divTeddyBasketButtons.classList.add("row", "p-0", "m-1", "mt-3", "w-100", "justify-content-center", "flex-column", "flex-md-row")
+    divTeddyBasketButtons.setAttribute("id", ConfirmDeleteBasket)
+    const teddyBasketButtonContent = `
+        <div class="col-sm-12 col-md-6 p-1"><a href="#" class="btn btn-danger btn-block " id="SupprimerAchat">Annuler ma commande</a></div>`
+    divTeddyBasketButtons.innerHTML = teddyBasketButtonContent
+    teddyBasketTotal.appendChild(divTeddyBasketButtons)
+
     //Afficher la demander "Vider le panier"
     const DeleteBasket = document.getElementById("SupprimerAchat")
     DeleteBasket.addEventListener("click", function (event) {
-            event.preventDefault()
-            $('#EmptyBasket').modal('show')      
+        event.preventDefault()
+        $('#EmptyBasket').modal('show')
     })
     //Confirmer et vider le panier
     const ConfirmEmptyBasket = document.getElementById("ConfirmDeleteBasket")
     ConfirmEmptyBasket.addEventListener("click", function (event) {
-            event.preventDefault()
-            localStorage.clear() 
-            window.location.href ="panier.html"
-    }) 
+        event.preventDefault()
+        localStorage.clear()
+        window.location.href = "panier.html"
+    })
     //Supprimer un seul Teddy
     // on récupére l'article associé au bouton poubelle
     const RemoveBtn = document.getElementsByClassName('RemoveBtn')
@@ -115,16 +115,16 @@ function ConstrusctionDuPanier(){
         })
     }
     //Création du formulaire pour passer commande
-    //Afficher la modal du formulaire
-    const ValiderAchat = document.getElementById("ValiderAchat")
     
+    const ValiderAchat = document.getElementById("ValiderAchat")
+
     // Verification validité prénom, nom, ville
-    function valideDivers(value) { 
+    function valideDivers(value) {
         return /^[A-Z-a-z\s]{3,40}$/.test(value)
     }
 
     // Verification validité adresse
-    function valideAdresse(value) { 
+    function valideAdresse(value) {
         return /^[A-Z-a-z-0-9\s]{5,80}$/.test(value)
     }
 
@@ -147,13 +147,13 @@ function ConstrusctionDuPanier(){
         if (valideDivers(prenom.value)) {
         } else {
             // alert( "Erreur de prénom!")
-            event.preventDefault()    
+            event.preventDefault()
         }
     });
     // Vérification de la validité de l'adresse
     const adresse = document.getElementById("formAdresse")
     adresse.addEventListener("change", function (event) {
-        if (valideAdresse(adresse.value)){
+        if (valideAdresse(adresse.value)) {
         } else {
             // alert( "Erreur d'adresse!")
             event.preventDefault()
@@ -171,7 +171,7 @@ function ConstrusctionDuPanier(){
     // Vérification de la validité du mail
     const email = document.getElementById("formEmail")
     email.addEventListener("change", function (event) {
-        if (valideEmail(email.value)){
+        if (valideEmail(email.value)) {
         } else {
             // alert( "Erreur d'email!")
             event.preventDefault()
@@ -181,14 +181,14 @@ function ConstrusctionDuPanier(){
     const ValidateCommand = document.getElementById("ValiderCommande")
     ValidateCommand.addEventListener("click", function (event) {
         event.preventDefault();
-        if(     valideDivers(nom.value) && 
-                valideDivers(prenom.value) && 
-                valideAdresse(adresse.value) && 
-                valideDivers(ville.value) && 
-                valideEmail(email.value)){    
+        if (valideDivers(nom.value) &&
+            valideDivers(prenom.value) &&
+            valideAdresse(adresse.value) &&
+            valideDivers(ville.value) &&
+            valideEmail(email.value)) {
             //on créer un total
             localStorage.setItem('montantCommande', teddyTotalBasket);
-            
+
             //console.log(montantCommande);
             //on crée un contact
             const contact = {
@@ -207,16 +207,16 @@ function ConstrusctionDuPanier(){
             }
             //console.log(products);
             //on rassemble le tout
-            const infosCommande = {contact, products }
+            const infosCommande = { contact, products }
             // on envoie
-            const envoieCommande = async function (numeroCommande){
+            const envoieCommande = async function (numeroCommande) {
                 try {
                     const retourServeur = await fetch("https://ab-p5-api.herokuapp.com/api/teddies/order", {
                         method: "POST",
                         body: JSON.stringify(numeroCommande),
-                        headers: {"Content-Type": "application/json"}
+                        headers: { "Content-Type": "application/json" }
                     })
-                    if(retourServeur.ok) {
+                    if (retourServeur.ok) {
                         const numeroCommande = await retourServeur.json()
                         //console.log(numeroCommande.orderId)
                         localStorage.setItem("numeroCommande", numeroCommande.orderId)
@@ -226,17 +226,17 @@ function ConstrusctionDuPanier(){
                         event.preventDefault()
                         //alert("1er Erreur : " + retourServeur.status + ': ' + retourServeur.statusText)    
                         gestionErreurMessage(retourServeur.status + ': ' + retourServeur.statusText)
-                    } 
+                    }
                 } catch (error) {
                     //alert("2nd Erreur : " + error)
                     gestionErreurMessage(error)
-                } 
+                }
             }
             envoieCommande(infosCommande)
-        }else{
+        } else {
             //console.log('Commande non-envoyée')   
             //modal erreur
-            $('#erreurFormulaire').modal('show') 
+            $('#erreurFormulaire').modal('show')
         }
     })
 }

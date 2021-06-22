@@ -154,6 +154,6 @@ function thenRedirect() {
     if (j == -1) {
         teddyAuPanier.push(teddyAchat)
     }
-    //  teddyAuPanier[7].teddyPrice = 120
+    
     localStorage.setItem('AchatTeddies', JSON.stringify(teddyAuPanier))
 }
