@@ -1,3 +1,4 @@
+
 // Récupération de l'ID de l'ours selectionné
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
